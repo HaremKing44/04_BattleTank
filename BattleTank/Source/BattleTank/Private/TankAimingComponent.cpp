@@ -2,6 +2,7 @@
 
 
 #include "TankAimingComponent.h"
+#include "TankBarrel.h"
 #include "Components/StaticMeshComponent.h"
 #include "Engine/Classes/Kismet/GameplayStatics.h"
 
@@ -17,11 +18,6 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
-	/*auto OurTankName = GetOwner()->GetName();
-	auto BarrelLocation = Barrel->GetComponentLocation().ToString();
-
-	UE_LOG(LogTemp, Warning, TEXT("%s is aiming at: %s from: %s"), *(OurTankName), *(HitLocation.ToString()), *(BarrelLocation))*/
-
 	if (!Barrel) { return; }
 
 	FVector OutLaunchVelocity(0);
@@ -35,6 +31,9 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		StartLocation,
 		HitLocation,
 		LaunchSpeed,
+		false,
+		0.,
+		0.,
 		ESuggestProjVelocityTraceOption::DoNotTrace
 	);
 
@@ -42,12 +41,20 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrelTowards(AimDirection);
+
+		auto Time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f: Aim Solution found"), Time)
 	}
 
 	//if no solution then do nothing
+	else
+	{
+		auto Time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f: Aim Solution found"), Time)
+	}
 }
 
-void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	Barrel = BarrelToSet;
 }
@@ -59,9 +66,7 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 
-	UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *(DeltaRotator.ToString()))
+	//UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *(DeltaRotator.ToString()))
 
-	//Move the barrel right amount this frame
-
-	//Give a maximum elevation speed and frame time
+	Barrel->Elevation(DeltaRotator.Pitch);
 }
