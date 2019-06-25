@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
+#include "Engine/World.h"
 #include "TankAimingComponent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
-class UTankBarrel; /*Forward Declaration*/  class UTANKTurret;
+class UTankBarrel; /*Forward Declaration*/  class UTANKTurret;  class AProjectile;
 UCLASS()
 class BATTLETANK_API ATank : public APawn
 {
@@ -30,10 +30,21 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 		void SetBarrelReference(UTankBarrel* BarrelToSet);
-	
-	UPROPERTY(EditAnywhere, Category = Firing)
-		float LaunchSpeed = 100000.0; //TODO sensable Default
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 		void SetTurretReference(UTANKTurret* TurretToSet);
+
+	UFUNCTION(BlueprintCallable, Category = Firing)
+		void Fire();
+
+private:
+
+	UPROPERTY(EditAnywhere, Category = Firing)
+		float LaunchSpeed = 100000.0;
+
+	UPROPERTY(EditAnywhere, Category = Setup)
+		TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	//Local Barrel Reference for spawning projectile
+	UTankBarrel* Barrel = nullptr;
 };
