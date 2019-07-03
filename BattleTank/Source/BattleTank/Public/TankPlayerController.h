@@ -23,6 +23,7 @@ public:
 
 private:
 
+	UFUNCTION(BlueprintCallable, Category = "Setup")
 	ATank* GetControlledTank() const;
 
 	void AimTowardCrosshair();
