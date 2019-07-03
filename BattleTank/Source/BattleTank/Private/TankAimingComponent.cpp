@@ -47,13 +47,9 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	//if no solution then do nothing
 }
 
-void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
+void UTankAimingComponent::Initialize(UTankBarrel* BarrelToSet, UTANKTurret* TurretToSet)
 {
 	Barrel = BarrelToSet;
-}
-
-void UTankAimingComponent::SetTurretReference(UTANKTurret* TurretToSet)
-{
 	Turret = TurretToSet;
 }
 
