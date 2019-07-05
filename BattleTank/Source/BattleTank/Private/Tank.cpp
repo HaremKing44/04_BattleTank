@@ -11,6 +11,15 @@ ATank::ATank()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+
+	UE_LOG(LogTemp, Warning, TEXT("Constructor has been Called"))
+}
+
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+
+	UE_LOG(LogTemp, Warning, TEXT("BeginPlay has been Called"))
 }
 
 void ATank::AimAt(FVector HitLocation)

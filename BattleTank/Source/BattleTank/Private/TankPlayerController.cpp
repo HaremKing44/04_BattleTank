@@ -3,10 +3,13 @@
 
 #include "TankPlayerController.h"
 #include "Camera/PlayerCameraManager.h"
+#include "TankAimingComponent.h"
 
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+	FoundAimingComponent(AimingComponent);
 }
 
 //called every frame

@@ -20,7 +20,7 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditDefaultsOnly, Category = AI)
+	UPROPERTY(EditDefaultsOnly, Category = "AI")
 		float AcceptanceRadius = 3000;
 	
 };

@@ -15,6 +15,8 @@ private:
 	// Sets default values for this pawn's properties
 	ATank();
 
+	virtual void BeginPlay() override;
+
 protected:
 
 	UPROPERTY(BlueprintReadOnly)
@@ -26,21 +28,21 @@ protected:
 public:
 	void AimAt(FVector HitLocation);
 
-	UFUNCTION(BlueprintCallable, Category = Firing)
+	UFUNCTION(BlueprintCallable, Category = "Firing")
 		void Fire();
 
 private:
 
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 		float LaunchSpeed = 4000.0;
 
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	//Local Barrel Reference for spawning projectile
 	UTankBarrel* Barrel = nullptr;
 
-	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float ReloadTimeInSeconds = 3;
 
 	double LastFireTime = 0;
