@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #pragma once
+
 #include "Engine/World.h"
-#include"Tank.h"
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
@@ -26,10 +26,6 @@ protected:
 		void FoundAimingComponent(UTankAimingComponent* AimingComponentRef);
 
 private:
-
-	UFUNCTION(BlueprintCallable, Category = "Setup")
-	ATank* GetControlledTank() const;
-
 	void AimTowardCrosshair();
 
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
