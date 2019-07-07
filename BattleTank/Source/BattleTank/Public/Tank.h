@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
-class UTankBarrel; /*Forward Declaration*/  class UTANKTurret;  class AProjectile;  class UTankMovementComponent;
+class UTankBarrel; /*Forward Declaration*/  class UTANKTurret;  class AProjectile;  
 UCLASS()
 class BATTLETANK_API ATank : public APawn
 {
@@ -21,9 +21,6 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly)
 	UTankAimingComponent* TankAimingComponent = nullptr ;
-
-	UPROPERTY(BlueprintReadOnly)
-	UTankMovementComponent* TankMovementComponent = nullptr;
 
 public:
 	void AimAt(FVector HitLocation);
