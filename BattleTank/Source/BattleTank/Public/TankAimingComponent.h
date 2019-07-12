@@ -11,7 +11,8 @@ enum class EFiringState : uint8
 {
 	Reloading,
 	Aiming,
-	locked, OutOfAmmo
+	locked, 
+	OutOfAmmo
 };
 
 class UTankBarrel; /*Forward Declaration*/  class UTANKTurret;  class AProjectile;
