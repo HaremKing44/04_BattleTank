@@ -25,6 +25,9 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 		void FoundAimingComponent(UTankAimingComponent* AimingComponentRef);
 
+	UFUNCTION()
+		void OnTankDeath();
+
 private:
 	void AimTowardCrosshair();
 
@@ -43,4 +46,5 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 		float LineTraceRange = 1000000.0;
 
+	virtual void SetPawn(APawn* InPawn) override;
 };
